@@ -124,8 +124,11 @@ Stack instructions:
 
 19   cos (a -- cos(a))             acos (a -- acos(a))
 
-20   tan (a -- tan(a))             atan (a -- atan(a)) \n
-21   sinh (a -- sinh(a))           asinh (a -- asinh(a)) \n
-22   cosh (a -- cos(a))            acosh (a -- acosh(a)) \n
-23   tanh (a -- cos(a))            atanh (a -- atanh(a)) \n
+20   tan (a -- tan(a))             atan (a -- atan(a)) 
+
+21   sinh (a -- sinh(a))           asinh (a -- asinh(a)) 
+
+22   cosh (a -- cos(a))            acosh (a -- acosh(a)) 
+
+23   tanh (a -- cos(a))            atanh (a -- atanh(a)) 
 
