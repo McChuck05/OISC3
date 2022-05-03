@@ -30,7 +30,7 @@ Assembler formats:
 %            data
 name:        naming a memory word
 name         using a named word
-*name        indirect reference [[name]] (if N is 23, *N is 23.0)
+\*name        indirect reference [[name]] (if N is 23, \*N is 23.0)
 @            this word
 ?            next word
 % --NEGATIVE: --NEGATIVE--     mandatory memory separator
