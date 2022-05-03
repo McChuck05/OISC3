@@ -3,7 +3,8 @@
 #
 
 1 1 1                           # Harmless fun for the first instruction.  Remember, can't directly jump back to location 0.
-                                # Could also jump to Main, which is probably a better idea.
+                                # Could also be "/jump Main", which is probably a better idea.
+                                #
 Main:   /push   Text0*
         /call   Print
         /push   Ten
@@ -21,7 +22,7 @@ Main:   /push   Text0*
 Print:  /pop    print*
 Ploop:  /push   *print*         # Indirect reference.  Converts to a float.
         /exec   writechar
-        /lit-   1 print*        # Test data is in negative memory, so subtracting one moves along the string.
+        /lit-   1 print*        # Text data is in negative memory, so subtracting one moves along the string.
         /jump   *print* Pend    # Test for end of string marker (<= 0).
         /jump   Ploop           # Unconditional jump, addds in a reference to 0.
 Pend:   /sub    print*          # Zeroes out print*.  Not strictly necessary, but good form.
