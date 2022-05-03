@@ -30,7 +30,7 @@ A 0 0    push [A] onto the stack         /push
 
 Assembler formats:
 
-#            comment
+\#            comment
 
 %            data
 
