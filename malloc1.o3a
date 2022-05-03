@@ -1,0 +1,41 @@
+#       Test of the new and improved OSIC:3 malloc and free functions.
+#       GPL (C) 2022 McChuck
+#
+
+1 1 1                           # Harmless fun for the first instruction.  Remember, can't directly jump back to location 0.
+                                # Could also jump to Main, which is probably a better idea.
+Main:   /push   Text0*
+        /call   Print
+        /push   Ten
+        /exec   Malloc
+        /push   Mten
+        /exec   Malloc
+        /push   Mten
+        /exec   Free
+        /push   Ten
+        /exec   Free
+        /push   Text1*          # This is much easier than the previous methods of moving a pointer around.
+        /call   Print           # Unconditional call, adds in a reference to 0.  NextIP is pushed to the return stack.
+        /jump   -1              # halt
+
+Print:  /pop    print*
+Ploop:  /push   *print*         # Indirect reference.  Converts to a float.
+        /exec   writechar
+        /lit-   1 print*        # Test data is in negative memory, so subtracting one moves along the string.
+        /jump   *print* Pend    # Test for end of string marker (<= 0).
+        /jump   Ploop           # Unconditional jump, addds in a reference to 0.
+Pend:   /sub    print*          # Zeroes out print*.  Not strictly necessary, but good form.
+        /ret                    # Return stack is popped to NextIP.
+% print*: 0                     # Data in positive memory must be preceded by the '%' indicator.  Note this is a local variable, don't need to know name.
+
+
+% --NEGATIVE--: --NEGATIVE--    # MUST be here in this form.
+Ten: 10
+Malloc: 16
+Free: -16
+Mten: -10
+Text1: '"' "These are the times that try men's souls." '"' 10 0         # 10 is newline.  0 is end of string marker.
+Text1*: Text1
+writechar: -1
+Text0: "Malloc & Free test." 10 "Use a negative number to allocate or free negative memory." 10 0
+Text0*: Text0

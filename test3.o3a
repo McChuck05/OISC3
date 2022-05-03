@@ -1,0 +1,81 @@
+#   Test of OISC:3
+#   GPL (C) 2022 McChuck
+#   Print phrase, print query, accept input, print input, print phrase by subroutine, print pi * e, halt
+#
+
+! Z Print1              #   0   Jump        Cannot easily reference 0, so use as jump to main.
+Print1: *Text1* ! !     #   3   Push
+! ! WriteChar           #   6   Exec
+1 Text1* !              #   9   Lit-
+! *Text1* Next1         #   12  Jump?
+! Z Print1              #   15  Jump
+
+Next1: Z ! WriteCR      #   18  Call
+Print2: *Text2* ! !     #   21  Push
+! ! WriteChar           #   24  Exec
+1 Text2* !              #   27  Lit-
+! *Text2* Next2         #   30  Jump?
+! Z Print2              #   33  Jump
+
+Next2: ! ! ReadChar     #   36  Exec
+Print3: *Text3* ! !     #   39  Push
+! ! WriteChar           #   42  Exec
+1 Text3* !              #   45  Lit-
+! *Text3* Next3         #   48  Jump?
+! Z Print3              #   51  Jump
+
+Next3: ! ! WriteChar    #   54  Exec
+Z ! WriteCR             #   57  Call
+Text4* temp             #   60  Sub
+temp Print*             #   63  Sub
+temp                    #   66  Zero
+Z ! Print               #   69  Call
+pi ! !                  #   72  Push
+e ! !                   #   75  Push
+! ! Multiply            #   78  Exec
+! ! WriteNum            #   81  Exec
+Z ! WriteCR             #   84  Call
+
+! ! !                   #   87  Return      empty stack = Halt
+# ! Z *M1               #   87  Jump        negative = Halt
+
+WriteCR: CR ! !         #   90  Push        Subroutine: print carriage return
+! ! WriteChar           #   93  Exec
+! ! !                   #   96  Ret
+
+Print: *Print* ! !      #   99  Push        Subroutine: print <=0 delimited string
+! ! WriteChar           #   102 Exec
+1 Print* !              #   105 Lit-
+! *Print* PrintEnd      #   108 Jump?
+! Z Print               #   111 Jump
+PrintEnd: Print*        #   114 Zero
+! ! !                   #   117 Ret
+
+
+% --NEGATIVE--: --NEGATIVE--
+
+text1: "Good morning, starshine.  The world says, 'Hello!'" 10 -1
+text2: "Type any character > " -1
+text3: 10 "You typed: " -1
+text4: 10 "pi * e = " -1
+CR: 10
+Space: 32
+M1: -1
+P1: 1
+# Z: 0
+temp: 0
+Text1*: text1
+Text2*: text2
+Text3*: text3
+Text4*: text4
+pi: 3.14159
+e: 2.718281828
+WriteChar: -1
+ReadChar: 1
+WriteNum: -2
+ReadDigit: 2
+inputA: 0
+Multiply: 12
+Print*: 0
+Garbage: 111 2 3 4 5
+6 7 8
