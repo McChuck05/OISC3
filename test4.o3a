@@ -1,0 +1,82 @@
+#   Test of OISC:3
+#   GPL (C) 2022 McChuck
+#   Print phrase, print query, accept input, print input, print phrase by subroutine, print pi * e, halt
+#
+
+/jump Z Print1              #   0   Jump        Cannot easily reference 0, so use as jump to main.
+Print1: /push *Text1*       #   3   Push
+/exec WriteChar             #   6   Exec
+/lit- 1 Text1*              #   9   Lit-
+/jump *Text1* Next1         #   12  Jump?
+/jump Z Print1              #   15  Jump
+
+Next1: /call Z WriteCR      #   18  Call
+Print2: /push *Text2*       #   21  Push
+/exec WriteChar             #   24  Exec
+/lit- 1 Text2*              #   27  Lit-
+/jump *Text2* Next2         #   30  Jump?
+/jump Z Print2              #   33  Jump
+
+Next2: /exec ReadChar       #   36  Exec
+Print3: /push *Text3*       #   39  Push
+/exec WriteChar             #   42  Exec
+/lit- 1 Text3*              #   45  Lit-
+/jump *Text3* Next3         #   48  Jump?
+/jump Z Print3              #   51  Jump
+
+Next3: /exec WriteChar      #   54  Exec
+/call Z WriteCR             #   57  Call
+/sub Text4* temp            #   60  Sub
+temp Print*                 #   63  Sub
+/sub temp                   #   66  Zero
+/call Z Print               #   69  Call
+/push pi                    #   72  Push
+/push e                     #   75  Push
+/exec Multiply              #   78  Exec
+/exec WriteNum              #   81  Exec
+/call Z WriteCR             #   84  Call
+
+/ret                        #   87  Return      empty stack = Halt
+# /jump *M1                 #   87  Jump        negative = Halt
+
+WriteCR: /push CR           #   90  Push        Subroutine: print carriage return
+/exec WriteChar             #   93  Exec
+/ret                        #   96  Ret
+
+Print: /push *Print*        #   99  Push        Subroutine: print <=0 delimited string
+/exec WriteChar             #   102 Exec
+/lit- 1 Print*              #   105 Lit-
+/jump *Print* PrintEnd      #   108 Jump?
+/jump Z Print               #   111 Jump
+PrintEnd: Print*            #   114 Zero
+/ret                        #   117 Ret
+
+
+% --NEGATIVE--: --NEGATIVE--
+
+text1: 'Good morning, starshine.  The earth says, "Hello!"' 10 -1
+text2: "Type any character > " -1
+text3: 10 "You typed: " -1
+text4: 10 "pi * e = " -1
+CR: 10
+Space: 32
+M1: -1
+P1: 1
+Z: 0                      #   Macro will add "Zero: 0" if it is not present
+temp: 0
+Text1*: text1
+Text2*: text2
+Text3*: text3
+Text4*: text4
+pi: 3.14159
+e: 2.718281828
+WriteChar: -1
+ReadChar: 1
+WriteNum: -2
+ReadDigit: 2
+inputA: 0
+Multiply: 12
+Print*: 0
+Garbage: 111 2 3 4 5
+6 7 8
+
