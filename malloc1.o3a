@@ -1,0 +1,37 @@
+1 1 1                   # harmless fun for the first instruction.
+                        # could also jump to Main
+Main:   /push   Text0*
+        /call   Print
+        /push   Ten
+        /exec   Malloc
+        /push   Mten
+        /exec   Malloc
+        /push   Mten
+        /exec   Free
+        /push   Ten
+        /exec   Free
+        /push   Text1*
+        /call   Print
+        /jump   -1        # Halt
+
+Print:  /pop    print*
+Ploop:  /push   *print*
+        /exec   writechar
+        /lit-   1 print*
+        /jump   *print* Pend
+        /jump   Ploop
+Pend:   /sub    print*
+        /ret
+% print*: 0
+
+
+% --NEGATIVE--: --NEGATIVE--
+Ten: 10
+Malloc: 16
+Free: -16
+Mten: -10
+Text1: '"' "These are the times that try men's souls." '"' 10 0
+Text1*: Text1
+writechar: -1
+Text0: "Malloc & Free test." 10 "Use a negative number to allocate or free negative memory." 10 0
+Text0*: Text0
