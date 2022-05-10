@@ -34,23 +34,23 @@ Assembler formats:
     ,            separator
     " or '       string delimiters
     ZERO         automatically created word containing 0
-   
-   /sub can be called with 1, 2 or 3 words
-      A B C    [C] = [B] - [A]
-      A B      [B] = [B] - [A]
-      A        [A] = 0
-      
-   /lit- must be called with 2 words
-      A B      [B] = [B] - A
-      
-   /call and /jump can be called with 1 or 2 words.
-      A B      if [A] <= 0, branch to B   
-      A        unconditional branch to A
-      
-   /push, /pop and /exec are called with 1 word
-      A        push [A] / pop to [A] / execute instruction [A]
-      
-   /ret takes no arguments.  If the return stack is empty, the program will halt.  Branching to a negative address will also halt.
+    
+    /sub can be called with 1, 2 or 3 words
+       A B C    [C] = [B] - [A]
+       A B      [B] = [B] - [A]
+       A        [A] = 0
+       
+    /lit- must be called with 2 words
+       A B      [B] = [B] - A
+       
+    /call and /jump can be called with 1 or 2 words.
+       A B      if [A] <= 0, branch to B   
+       A        unconditional branch to A
+       
+    /push, /pop and /exec are called with 1 word
+       A        push [A] / pop to [A] / execute instruction [A]
+       
+    /ret takes no arguments.  If the return stack is empty, the program will halt.  Branching to a negative address will also halt.
 
 Stack instructions:
 
