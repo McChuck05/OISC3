@@ -35,7 +35,7 @@ Assembler formats:
     " or '       string delimiters
     ZERO         automatically created word containing 0
     
-    /sub can be called with 1, 2 or 3 words
+    /sub can be called with 1, 2 or 3 words (the '/sub' can be left out)
        A B C    [C] = [B] - [A]
        A B      [B] = [B] - [A]
        A        [A] = 0
