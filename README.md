@@ -9,15 +9,15 @@ The assembler/interpreter is written in Python.  It will optionally produce a co
 Usage: python oisc3.py infile.o3a [outfile.o3c]
 
 Instruction formats:
-
-  A B C    [C] = [B] - [A]                 /sub
-  A B 0    [B] = [B] - A                   /lit-
-  A 0 C    if [A] <= 0, call C             /call  (pushes NextIP onto the return stack)
-  0 B C    if [B] <= 0, jump to C          /jump
-  A 0 0    push [A] onto the stack         /push
-  0 B 0    pop the top of stack to B       /pop
-  0 0 C    execute instruction [C]         /exec  (operates on the stack)
-  0 0 0    return                          /ret  (pops the top of return stack to NextIP)
+   
+   A B C    [C] = [B] - [A]                 /sub
+   A B 0    [B] = [B] - A                   /lit-
+   A 0 C    if [A] <= 0, call C             /call  (pushes NextIP onto the return stack)
+   0 B C    if [B] <= 0, jump to C          /jump
+   A 0 0    push [A] onto the stack         /push
+   0 B 0    pop the top of stack to B       /pop
+   0 0 C    execute instruction [C]         /exec  (operates on the stack)
+   0 0 0    return                          /ret  (pops the top of return stack to NextIP)
 
 Assembler formats:
 
