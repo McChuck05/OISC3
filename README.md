@@ -21,19 +21,19 @@ Instruction formats:
 
 Assembler formats:
    
-   \#            comment
-   %            data
-   name:        naming a memory word
-   name         using a named word
-   \*name        indirect reference [[name]] (if N is 23, \*N is 23.0)
-   @            this word
-   ?            next word
-   % --NEGATIVE: --NEGATIVE--     mandatory memory separator
-   !            0
-   ;            end of instruction
-   ,            separator
-   " or '       string delimiters
-   ZERO         automatically created word containing 0
+    \#            comment
+    %            data
+    name:        naming a memory word
+    name         using a named word
+    \*name        indirect reference [[name]] (if N is 23, \*N is 23.0)
+    @            this word
+    ?            next word
+    % --NEGATIVE: --NEGATIVE--     mandatory memory separator
+    !            0
+    ;            end of instruction
+    ,            separator
+    " or '       string delimiters
+    ZERO         automatically created word containing 0
    
    /sub can be called with 1, 2 or 3 words
       A B C    [C] = [B] - [A]
