@@ -20,7 +20,7 @@ Instruction formats:
     0 0 0    return                          /ret  (pops the top of return stack to NextIP)
 
 Assembler formats:
-
+   
    \#            comment
    %            data
    name:        naming a memory word
