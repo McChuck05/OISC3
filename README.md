@@ -23,12 +23,12 @@ Assembler formats:
    
     \#            comment
     %            data
-    name:        naming a memory word
-    name         using a named word
+    name:        naming a memory word (label)
+    name         using a named word (label)
     \*name        indirect reference [[name]] (if N is 23, \*N is 23.0)
     @            this word
     ?            next word
-    % --NEGATIVE: --NEGATIVE--     mandatory memory separator
+    % --NEGATIVE--: --NEGATIVE--     mandatory memory separator
     !            0
     ;            end of instruction
     ,            separator
